@@ -1,8 +1,3 @@
-.. CS-Emmental documentation master file, created by
-   sphinx-quickstart on Tue Feb  4 09:38:58 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 Welcome to CS-Emmental's documentation!
 =====================================================
 
@@ -10,11 +5,15 @@ Welcome to CS-Emmental's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   introduction
+   administration/deployment
+   administration/challenges
+   contributing/platform
+   contributing/kubernetes_controller
 
 
 Indices and tables
 ==================
 
 * :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`

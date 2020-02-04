@@ -1,0 +1,82 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: back
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: platform
+            tier: backend
+    template:
+        metadata:
+            labels:
+                app: platform
+                tier: backend
+        spec:
+            containers:
+              - name: back
+                image: back
+                imagePullPolicy: Never
+                ports:
+                  - containerPort: 5000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: front
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: platform
+            tier: frontend
+    template:
+        metadata:
+            labels:
+                app: platform
+                tier: frontend
+        spec:
+            containers:
+              - name: front
+                image: front
+                imagePullPolicy: Never
+                ports:
+                  - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: back
+spec:
+    selector:
+        app: platform
+        tier: backend
+    ports:
+      - protocol: TCP
+        port: 5000
+        targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: front
+spec:
+    selector:
+        app: platform
+        tier: frontend
+    ports:
+      - protocol: TCP
+        port: 80
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+    name: front-ingress
+    annotations:
+        nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+    backend:
+        serviceName: front
+        servicePort: 80
