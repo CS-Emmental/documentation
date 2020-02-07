@@ -87,7 +87,7 @@ Now, create a Service to expose the backend::
         ports:
           - protocol: TCP
             port: 5000
-            targetPort: http
+            targetPort: 5000
 
 Now you can add a Service and an Ingress to expose the web server on the
 network::
