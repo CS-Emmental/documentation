@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: emmental
+      tier: frontend
+      track: stable
+  template:
+    metadata:
+      labels:
+        app: emmental
+        tier: frontend
+        track: stable
+    spec:
+      containers:
+        - name: front
+          image: front
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: front
+spec:
+  selector:
+    app: emmental
+    tier: frontend
+  ports:
+    - protocol: "TCP"
+      port: 80
+      type: LoadBalancer
+    
