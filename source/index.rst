@@ -6,6 +6,7 @@ Welcome to CS-Emmental's documentation!
    :caption: Contents:
 
    introduction
+   administration/role-service-binding
    administration/deployment
    administration/challenges
    contributing/platform
