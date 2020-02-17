@@ -7,6 +7,15 @@ Requirements
 ^^^^^^^^^^^^
 You must have a Kubernetes cluster.
 
+Downloadables
+^^^^^^^^^^^^^
+Yaml files used can be downloaded here:
+
+:download:`back.yaml <../files/back.yaml>`
+:download:`front.yaml <../files/front.yaml>`
+:download:`ingress.yaml <../files/ingress.yaml>`
+:download:`mongo.yaml <../files/mongo.yaml>`
+
 Platform deployment
 ^^^^^^^^^^^^^^^^^^^
 
