@@ -13,16 +13,10 @@ Role
 
 First, define a cluster role::
 
-    kind: ClusterRole
-    apiVersion: rbac.authorization.k8s.io/v1beta1
-    metadata:
-        name: challenge-instance-manager
-    rules:
-        - apiGroups: ["", "apps"] # "" indicates the core API group
-        resources: ["services", "deployments"]
-        verbs: ["create", "delete", "read", "list"]
+    .. literalinclude:: ../files/mongo.yaml
+      :language: yaml
 
-Then apply it:: 
+Then apply it::
 
     kubectl apply -f "clusterRole.yml"
 
