@@ -5,16 +5,19 @@ Deployment
 
 Requirements
 ^^^^^^^^^^^^
-You must have a Kubernetes cluster.
+You must have a Kubernetes cluster, which must have:
+* a namespace called *emmental-platform* (if you want to rename it, you must adapt all manifests)
+* a namespace called *emmental-challenges* (cannot be changed for now)
 
 Downloadables
 ^^^^^^^^^^^^^
-Yaml files used can be downloaded here:
+Kubernetes manifests can be downloaded here:
 
+:download:`clusterrole.yaml <../files/clusterrole.yaml>`
+:download:`mongo.yaml <../files/mongo.yaml>`
 :download:`back.yaml <../files/back.yaml>`
 :download:`front.yaml <../files/front.yaml>`
 :download:`ingress.yaml <../files/ingress.yaml>`
-:download:`mongo.yaml <../files/mongo.yaml>`
 
 Platform deployment
 ^^^^^^^^^^^^^^^^^^^

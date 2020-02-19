@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: emmental-platform
   name: back
 spec:
   replicas: 1
@@ -34,6 +35,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: emmental-platform
   name: back
 spec:
   selector:
@@ -43,4 +45,3 @@ spec:
     - protocol: TCP
       port: 5000
       targetPort: 5000
-    
