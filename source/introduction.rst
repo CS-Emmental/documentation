@@ -9,7 +9,8 @@ containers, which can be connected by network or not, then that challenge can
 be hosted on CS-Emmental.
 
 The only requirement is to have a functional Kubernetes cluster. There is no
-other requirement - you can deploy manually a Kubernetes cluster, use a managed
+other requirement - you can deploy manually a Kubernetes cluster, or use a
+managed cluster in the cloud.
 
 CS-Emmental has two main components: the platform, which is the website used by
 users to browse and start available challenges and by admins to manage the
