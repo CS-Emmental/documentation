@@ -6,7 +6,7 @@ Configuration
 Backend
 ^^^^^^^
 
-In the code, there is a default configuration and a develpoment configuration.
+The default configuration is the development one.
 In production, a conf file overwrites the development configuration.
 
 Development
@@ -17,6 +17,7 @@ The simpliest configuration for develpoment is::
     SECRET_KEY="dev"
     MONGO_URI="mongodb://mongo:27017/cs-emmental"
 
+Currently, this is hardcoded in ``app.py``. Check the code out.
 
 Production
 """"""""""
@@ -54,3 +55,26 @@ Finally, it should look like the file below:
 
     .. literalinclude:: ../files/back.yaml
         :language: yaml
+
+
+Frontend
+^^^^^^^^
+
+The frontend configuration is managed via dotenv files. These files are used at webpack compilation time, in other words, when the frontend image is built. 
+The webpack only reads ``VUE_APP`` prefixed variable. 
+
+This is the actual configuration file we use:
+
+.. code-block::
+
+    VUE_APP_KUBERNETES_HOST=172.17.7.77
+
+Development
+"""""""""""
+
+Development conf files are ``.env.development`` and ``.env.development.local``
+
+Production
+""""""""""
+
+Production conf files are ``.env`` and ``.env.local``
