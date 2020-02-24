@@ -5,16 +5,30 @@ Deployment
 
 Requirements
 ^^^^^^^^^^^^
-You must have a Kubernetes cluster.
+You must have a Kubernetes cluster, which must have:
 
-Downloadables
-^^^^^^^^^^^^^
-Yaml files used can be downloaded here:
+* a namespace called *emmental-platform* (if you want to rename it, you must adapt all manifests)
+* a namespace called *emmental-challenges* (cannot be changed for now)
+* an Ingress controller enabled. For exemple, with Minikube, use ``minikube addons enable ingress``
 
+Downloadable manifests
+^^^^^^^^^^^^^^^^^^^^^^
+Kubernetes manifests can be downloaded here:
+
+:download:`clusterrole.yaml <../files/authorization.yaml>`
+:download:`mongo.yaml <../files/mongo.yaml>`
 :download:`back.yaml <../files/back.yaml>`
 :download:`front.yaml <../files/front.yaml>`
-:download:`ingress.yaml <../files/ingress.yaml>`
-:download:`mongo.yaml <../files/mongo.yaml>`
+
+.. note:: Use these manifests by using ``kubectl apply -f <filename.yaml>``
+
+Set up Role Service Bindings
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We need to allow the platform to manage deployments and services.
+This manifest defines a ServiceAccount, then a ClusterRole and then bind them with a ClusterRoleBinding:
+
+    .. literalinclude:: ../files/authorization.yaml
 
 Platform deployment
 ^^^^^^^^^^^^^^^^^^^
@@ -32,24 +46,16 @@ images::
 Then, create a Kubernetes Deployment and Service to deploy the back:
 
     .. literalinclude:: ../files/back.yaml
-      :language: yaml
 
 
 .. note:: You should adapt the number of replicas to your needs.
 
-Do the same for the front:
+Do the same for the front, which is exposed by an ingress:
 
     .. literalinclude:: ../files/front.yaml
-      :language: yaml
 
-
-Now you can add an Ingress to expose the web server on the
-network:
-
-    .. literalinclude:: ../files/ingress.yaml
-      :language: yaml
-
-To deploy a mongo database, add the next ressources:
+To deploy a mongo database, add the next ressources, do not forget to customize the sotrage size and location on disk:
 
     .. literalinclude:: ../files/mongo.yaml
-      :language: yaml
+
+.. warning:: Using local storage will not work on multi-node clusters.
