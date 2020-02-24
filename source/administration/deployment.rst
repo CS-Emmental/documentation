@@ -6,6 +6,7 @@ Deployment
 Requirements
 ^^^^^^^^^^^^
 You must have a Kubernetes cluster, which must have:
+
 * a namespace called *emmental-platform* (if you want to rename it, you must adapt all manifests)
 * a namespace called *emmental-challenges* (cannot be changed for now)
 * an Ingress controller enabled. For exemple, with Minikube, use ``minikube addons enable ingress``
