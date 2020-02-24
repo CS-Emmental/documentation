@@ -15,7 +15,8 @@ Downloadable manifests
 ^^^^^^^^^^^^^^^^^^^^^^
 Kubernetes manifests can be downloaded here:
 
-:download:`clusterrole.yaml <../files/authorization.yaml>`
+:download:`namespaces.yaml <../files/namespaces.yaml>`
+:download:`authorization.yaml <../files/authorization.yaml>`
 :download:`mongo.yaml <../files/mongo.yaml>`
 :download:`back.yaml <../files/back.yaml>`
 :download:`front.yaml <../files/front.yaml>`
@@ -26,7 +27,7 @@ Set up Namespaces
 ^^^^^^^^^^^^^^^^^
 You need to have two namespaces, `emmental-platform` and `emmental-challenges`. You may use this manifest to create them:
 
-    .. literalinclude:: ../files/authorization.yaml
+    .. literalinclude:: ../files/namespaces.yaml
 
 
 Set up Role Service Bindings
