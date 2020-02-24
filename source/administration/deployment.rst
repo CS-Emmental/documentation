@@ -8,9 +8,10 @@ Requirements
 You must have a Kubernetes cluster, which must have:
 * a namespace called *emmental-platform* (if you want to rename it, you must adapt all manifests)
 * a namespace called *emmental-challenges* (cannot be changed for now)
+* an Ingress controller enabled. For exemple, with Minikube, use ``minikube addons enable ingress``
 
 Downloadable manifests
-^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 Kubernetes manifests can be downloaded here:
 
 :download:`clusterrole.yaml <../files/authorization.yaml>`
@@ -18,7 +19,7 @@ Kubernetes manifests can be downloaded here:
 :download:`back.yaml <../files/back.yaml>`
 :download:`front.yaml <../files/front.yaml>`
 
-.. note:: Use these manifests by using *kubectl apply -f <filename.yaml>*.
+.. note:: Use these manifests by using ``kubectl apply -f <filename.yaml>``
 
 Set up Role Service Bindings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
