@@ -54,7 +54,7 @@ Do the same for the front, which is exposed by an ingress:
 
     .. literalinclude:: ../files/front.yaml
 
-To deploy a mongo database, add the next ressources, do not forget to customize the sotrage size and location on disk:
+To deploy a mongo database, add the next ressources, do not forget to customize the storage size and location on disk:
 
     .. literalinclude:: ../files/mongo.yaml
 
