@@ -34,9 +34,10 @@ spec:
     app: emmental
     tier: frontend
   ports:
-    - protocol: "TCP"
-      port: 80
-  type: LoadBalancer
+    - protocol: TCP
+      port: 8080
+      targetPort: 80
+  type: ClusterIP
 ---
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
@@ -48,4 +49,4 @@ metadata:
 spec:
   backend:
     serviceName: front
-    servicePort: 80
+    servicePort: 8080
