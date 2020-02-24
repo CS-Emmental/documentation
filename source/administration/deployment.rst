@@ -17,7 +17,6 @@ Kubernetes manifests can be downloaded here:
 :download:`mongo.yaml <../files/mongo.yaml>`
 :download:`back.yaml <../files/back.yaml>`
 :download:`front.yaml <../files/front.yaml>`
-:download:`ingress.yaml <../files/ingress.yaml>`
 
 .. note:: Use these manifests by using *kubectl apply -f <filename.yaml>*.
 
@@ -49,15 +48,9 @@ Then, create a Kubernetes Deployment and Service to deploy the back:
 
 .. note:: You should adapt the number of replicas to your needs.
 
-Do the same for the front:
+Do the same for the front, which is exposed by an ingress:
 
     .. literalinclude:: ../files/front.yaml
-
-
-Now you can add an Ingress to expose the web server on the
-network:
-
-    .. literalinclude:: ../files/ingress.yaml
 
 To deploy a mongo database, add the next ressources, do not forget to customize the sotrage size and location on disk:
 
