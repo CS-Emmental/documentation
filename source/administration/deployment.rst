@@ -41,10 +41,11 @@ Platform deployment
 First you need to clone the platform repository, and build the back and front
 images::
 
-    git clone adresse
-    cd back
-    docker build
-    TODO: Finish these steps
+    git clone <plateform adress>
+    cd plateform
+    make build-prod
+
+.. note:: This creates two images named ``front`` and ``back``
 
 Then, create a Kubernetes Deployment and Service to deploy the back:
 
