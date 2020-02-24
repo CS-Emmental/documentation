@@ -26,7 +26,7 @@ Set up Role Service Bindings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We need to allow the platform to manage deployments and services.
-This manifest defines a ServiceAccount, then a ClusterRole and then bind them with a ClusterRoleBinding::
+This manifest defines a ServiceAccount, then a ClusterRole and then bind them with a ClusterRoleBinding:
 
     .. literalinclude:: ../files/authorization.yaml
 
