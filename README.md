@@ -1,5 +1,7 @@
 # CS-Emmental Documentation
 
+[![Documentation Status](https://readthedocs.org/projects/cs-emmental/badge/?version=latest)](https://cs-emmental.readthedocs.io/en/latest/?badge=latest)
+
 ## Build
 To edit this documentation, see the [Sphinx documentation](https://www.sphinx-doc.org/en/master/).
 
