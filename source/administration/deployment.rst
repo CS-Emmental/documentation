@@ -22,6 +22,13 @@ Kubernetes manifests can be downloaded here:
 
 .. note:: Use these manifests by using ``kubectl apply -f <filename.yaml>``
 
+Set up Namespaces
+^^^^^^^^^^^^^^^^^
+You need to have two namespaces, `emmental-platform` and `emmental-challenges`. You may use this manifest to create them:
+
+    .. literalinclude:: ../files/authorization.yaml
+
+
 Set up Role Service Bindings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
