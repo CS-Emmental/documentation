@@ -20,7 +20,10 @@ Kubernetes manifests can be downloaded here:
 :download:`back.yaml <../files/back.yaml>`
 :download:`front.yaml <../files/front.yaml>`
 
-.. note:: Use these manifests by using ``kubectl apply -f <filename.yaml>``
+Use these manifests one by one by using  ``kubectl apply -f <filename.yaml>``  
+or apply an entire manifest folder with ``kubectl apply -f <path/to/yaml/folder>``
+
+.. note:: To shut down what you just created, just replace ``apply`` by ``delete`` in above commands
 
 Set up Role Service Bindings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
