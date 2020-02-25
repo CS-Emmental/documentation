@@ -17,9 +17,9 @@ Kubernetes manifests can be downloaded here:
 
 :download:`namespaces.yaml <../files/namespaces.yaml>`
 :download:`authorization.yaml <../files/authorization.yaml>`
-:download:`mongo.yaml <../files/mongo.yaml>`
 :download:`back.yaml <../files/back.yaml>`
 :download:`front.yaml <../files/front.yaml>`
+:download:`mongo.yaml <../files/mongo.yaml>`
 
 Use these manifests one by one by using  ``kubectl apply -f <filename.yaml>``  
 or apply an entire manifest folder with ``kubectl apply -f <path/to/yaml/folder>``
@@ -28,6 +28,8 @@ or apply an entire manifest folder with ``kubectl apply -f <path/to/yaml/folder>
 
 Set up Namespaces
 ^^^^^^^^^^^^^^^^^
+:download:`namespaces.yaml <../files/namespaces.yaml>`
+
 You need to have two namespaces, `emmental-platform` and `emmental-challenges`. You may use this manifest to create them:
 
     .. literalinclude:: ../files/namespaces.yaml
@@ -35,6 +37,7 @@ You need to have two namespaces, `emmental-platform` and `emmental-challenges`. 
 
 Set up Role Service Bindings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+:download:`authorization.yaml <../files/authorization.yaml>`
 
 We need to allow the platform to manage deployments and services.
 This manifest defines a ServiceAccount, then a ClusterRole and then bind them with a ClusterRoleBinding:
@@ -43,6 +46,9 @@ This manifest defines a ServiceAccount, then a ClusterRole and then bind them wi
 
 Platform deployment
 ^^^^^^^^^^^^^^^^^^^
+:download:`back.yaml <../files/back.yaml>`
+:download:`front.yaml <../files/front.yaml>`
+:download:`mongo.yaml <../files/mongo.yaml>`
 
 .. warning:: This will expose the platform as a HTTP service. In production, you must deploy it in HTTPS!
 
