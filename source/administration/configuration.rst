@@ -3,6 +3,17 @@ Configuration
 
 .. highlight:: yaml
 
+Downloadable manifests
+^^^^^^^^^^^^^^^^^^^^^^
+Kubernetes manifests can be downloaded here:
+
+:download:`configmap-back.yaml <../files/configmap-back.yaml>`
+
+Use these manifests one by one by using  ``kubectl apply -f <filename.yaml>``  
+or apply an entire manifest folder with ``kubectl apply -f <path/to/yaml/folder>``
+
+.. note:: To shut down what you just created, just replace ``apply`` by ``delete`` in above commands
+
 Backend
 ^^^^^^^
 
@@ -24,7 +35,7 @@ Production
 
 For production, we use configMap of kubernetes. The app finds the prod configuration in a python file, for exemple in ``/etc/config/back.conf.py``
 
-Here is an exemple of configMap definition:
+Here is an exemple of configMap definition (:download:`configmap-back.yaml <../files/configmap-back.yaml>`):
 
     .. literalinclude:: ../files/configmap-back.yaml
         :language: yaml
