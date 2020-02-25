@@ -9,7 +9,7 @@ apiVersion: rbac.authorization.k8s.io/v1beta1
 metadata:
   name: challenge-instance-controller
 rules:
-  - apiGroups: ["core", "apps"]
+  - apiGroups: ["", "apps"] # "" indicates the core API group
     resources: ["services", "deployments"]
     verbs: ["create", "delete", "read", "list"]
 ---
@@ -22,6 +22,6 @@ roleRef:
   kind: ClusterRole
   name: challenge-instance-controller
 subjects:
-- kind: ServiceAccount
-  name: api-emmental
-  namespace: emmental-platform
+  - kind: ServiceAccount
+    name: api-emmental
+    namespace: emmental-platform
