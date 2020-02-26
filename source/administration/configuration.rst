@@ -17,23 +17,59 @@ or apply an entire manifest folder with ``kubectl apply -f <path/to/yaml/folder>
 Backend
 ^^^^^^^
 
-The default configuration is the development one.
-In production, a conf file overwrites the development configuration.
+The configuration is loaded depending on the mode of the app (development|production)
 
 Development
 """""""""""
 
-The simpliest configuration for develpoment is::
+Currently, the configuration for development contains these keys::
 
-    SECRET_KEY="dev"
-    MONGO_URI="mongodb://mongo:27017/cs-emmental"
+    SECRET_KEY = "secretfordev"
+    MONGO_URI = "mongodb://mongo:27017/cs-emmental"
 
-Currently, this is hardcoded in ``app.py``. Check the code out.
+    K8S_API_KEY = "k8s_api_key"
+    K8S_HOST = "https://ip:port"
+
+This configuration must be place in ``back/instance/back.conf.py``.
+
+
+Kubernetes API key
+''''''''''''''''''
+
+.. warning:: This section is only revelant in development.
+
+:download:`namespaces.yaml <../files/namespaces.yaml>`
+:download:`authorization.yaml <../files/authorization.yaml>`
+
+Here are few steps to generate and get your kubernetes API key:
+
+First, create the namespaces and the authorizations (service account, cluster role and role binding)::
+
+    kubectl apply -f namespaces.yaml
+    kubectl apply -f authorization.yaml
+
+Then, store in an env variable the name of the service account defined in authorization.yaml::
+
+    SERVICE_ACCOUNT=api-emmental
+
+Finally, run these commands to get the api key related to this service account::
+
+    SECRET=$(kubectl get -n emmental-platform serviceaccount ${SERVICE_ACCOUNT} -o json | jq -Mr '.secrets[].name | select(contains("token"))')
+    TOKEN=$(kubectl get -n emmental-platform secret ${SECRET} -o json | jq -Mr '.data.token' | base64 -d)
+
+    echo $TOKEN
+
+.. note:: ``kubectl get`` are namespaced with the flag ``-n emmental-platform``. Adapt the namespace according to your needs.
+
+Now copy paste it in the conf file.
 
 Production
 """"""""""
 
 For production, we use configMap of kubernetes. The app finds the prod configuration in a python file, for exemple in ``/etc/config/back.conf.py``
+
+Kubernetes configMap
+''''''''''''''''''''
 
 Here is an exemple of configMap definition (:download:`configmap-back.yaml <../files/configmap-back.yaml>`):
 
@@ -67,6 +103,9 @@ Finally, it should look like the file below:
     .. literalinclude:: ../files/back.yaml
         :language: yaml
 
+
+.. note:: In production, no need to define in the app configuration file some kubernetes configuration. This is set up automatically. 
+            In details, kubernetes client find its configuration via the cluster.
 
 Frontend
 ^^^^^^^^
