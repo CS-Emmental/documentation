@@ -10,7 +10,7 @@ metadata:
   name: challenge-instance-controller
 rules:
   - apiGroups: ["", "apps"] # "" indicates the core API group
-    resources: ["services", "deployments"]
+    resources: ["services", "deployments", "configmaps"]
     verbs: ["create", "delete", "read", "list"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
