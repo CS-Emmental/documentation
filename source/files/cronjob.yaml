@@ -1,0 +1,19 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  namespace: emmental-platform
+  name: stop-old-participations
+spec:
+  schedule: "* */6 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: stop-old-participations
+            image: byrnedo/alpine-curl:0.1.3
+            command:
+            - "/bin/sh"
+            - "-c"
+            - curl -s "http://front:8080/api/challenge-participations/stop-old"
+          restartPolicy: OnFailure
