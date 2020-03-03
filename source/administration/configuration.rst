@@ -63,6 +63,12 @@ Finally, run these commands to get the api key related to this service account::
 
 Now copy paste it in the conf file.
 
+Testing
+"""""""
+
+Testint is very similar to development. However, please note this difference.
+The configuration must be place in ``back/instance/test.conf.py``.
+
 Production
 """"""""""
 
