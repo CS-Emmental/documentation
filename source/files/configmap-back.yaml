@@ -10,4 +10,4 @@ data:
   back.conf.py: |-
     SECRET_KEY = "secretforprod"
     MONGO_URI = "mongodb://mongo:27017/cs-emmental"
-    CHECK_OLD_CHALLENGES_INTERVAL_HOURS = 24
+    CHECK_OLD_CHALLENGES_INTERVAL_HOURS = 12
