@@ -7,17 +7,17 @@ Downloadable manifests
 ^^^^^^^^^^^^^^^^^^^^^^
 Kubernetes manifests can be downloaded here:
 
-:download:`configmap-back.yaml <../files/configmap-back.yaml>`
+:download:`configmap-back.yaml <../files/manifests/configmap-back.yaml>`
 
-Use these manifests one by one by using  ``kubectl apply -f <filename.yaml>``  
+Use these manifests one by one by using  ``kubectl apply -f <filename.yaml>``
 or apply an entire manifest folder with ``kubectl apply -f <path/to/yaml/folder>``
 
-.. note:: To shut down what you just created, just replace ``apply`` by ``delete`` in above commands
+.. note:: To shut down what you just created, just replace ``apply`` by ``delete`` in above commands.
 
 Backend
 ^^^^^^^
 
-The configuration is loaded depending on the mode of the app (development|production)
+The configuration is loaded depending on the mode of the app (development or production).
 
 Development
 """""""""""
@@ -30,16 +30,16 @@ Currently, the configuration for development contains these keys::
     K8S_API_KEY = "k8s_api_key"
     K8S_HOST = "https://ip:port"
 
-This configuration must be place in ``back/instance/back.conf.py``.
+This configuration must be placed in ``back/instance/back.conf.py``.
 
 
 Kubernetes API key
 ''''''''''''''''''
 
-.. warning:: This section is only revelant in development.
+.. warning:: This section is only relevant in development.
 
-:download:`namespaces.yaml <../files/namespaces.yaml>`
-:download:`authorization.yaml <../files/authorization.yaml>`
+:download:`namespaces.yaml <../files/manifests/namespaces.yaml>`
+:download:`authorization.yaml <../files/manifests/authorization.yaml>`
 
 Here are few steps to generate and get your kubernetes API key:
 
@@ -48,7 +48,7 @@ First, create the namespaces and the authorizations (service account, cluster ro
     kubectl apply -f namespaces.yaml
     kubectl apply -f authorization.yaml
 
-Then, store in an env variable the name of the service account defined in authorization.yaml::
+Then, store in an environment variable the name of the service account defined in authorization.yaml::
 
     SERVICE_ACCOUNT=api-emmental
 
@@ -66,30 +66,29 @@ Now copy paste it in the conf file.
 Testing
 """""""
 
-Testint is very similar to development. However, please note this difference.
-The configuration must be place in ``back/instance/test.conf.py``.
+Testing is very similar to development. However, please note this difference.
+The configuration must be placed in ``back/instance/test.conf.py``.
 
 Production
 """"""""""
 
-For production, we use configMap of kubernetes. The app finds the prod configuration in a python file, for exemple in ``/etc/config/back.conf.py``
+For production, we use a Kubernetes configMap. The app finds the prod configuration in a Python file, for exemple in ``/etc/config/back.conf.py``.
 
 Kubernetes configMap
 ''''''''''''''''''''
 
-Here is an exemple of configMap definition (:download:`configmap-back.yaml <../files/configmap-back.yaml>`):
+Here is an exemple of configMap definition (:download:`configmap-back.yaml <../files/manifests/configmap-back.yaml>`):
 
-    .. literalinclude:: ../files/configmap-back.yaml
-        :language: yaml
+    .. literalinclude:: ../files/manifests/configmap-back.yaml
 
 .. warning:: SECRET_KEY must be some random bytes and kept secret. Read the (short) paragraph in the
     `official doc <https://flask.palletsprojects.com/en/1.1.x/quickstart/#sessions>`_ to learn how to properly set it
 
 
-Then backend pods must use this configMap. To do so, in the backend manifest, set this key in ``spec.template.spec``: 
+Then backend pods must use this configMap. To do so, in the backend manifest, set this key in ``spec.template.spec``:
 
-.. code-block:: yaml
-    
+.. code-block::
+
     volumes:
       - name: config-volume
         configMap:
@@ -97,8 +96,8 @@ Then backend pods must use this configMap. To do so, in the backend manifest, se
 
 And set this key in ``spec.template.spec.containers``:
 
-.. code-block:: yaml
-    
+.. code-block::
+
     volumeMounts:
       - name: config-volume
         mountPath: /etc/config
@@ -106,18 +105,17 @@ And set this key in ``spec.template.spec.containers``:
 
 Finally, it should look like the file below:
 
-    .. literalinclude:: ../files/back.yaml
-        :language: yaml
+    .. literalinclude:: ../files/manifests/back.yaml
 
 
-.. note:: In production, no need to define in the app configuration file some kubernetes configuration. This is set up automatically. 
-            In details, kubernetes client find its configuration via the cluster.
+.. note:: In production, there is no need to define any Kubernetes configuration configuration file in the app. This is set up automatically.
+            In details, containers find their configuration via the cluster.
 
 Frontend
 ^^^^^^^^
 
-The frontend configuration is managed via dotenv files. These files are used at webpack compilation time, in other words, when the frontend image is built. 
-The webpack only reads ``VUE_APP`` prefixed variable. 
+The frontend configuration is managed via dotenv files. These files are used at webpack compilation time, in other words, when the frontend image is built.
+The webpack only reads ``VUE_APP`` prefixed variable.
 
 This is the actual configuration file we use:
 

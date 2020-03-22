@@ -1,0 +1,15 @@
+apiVersion: projectcalico.org/v3
+kind: NetworkPolicy
+metadata:
+  name: allow-tcp-6379
+  namespace: emmental-platform
+spec:
+  selector: color == 'red'
+  ingress:
+  - action: Allow
+    protocol: TCP
+    source:
+      selector: color == 'blue'
+    destination:
+      ports:
+        - 6379
