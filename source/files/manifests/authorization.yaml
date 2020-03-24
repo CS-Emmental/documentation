@@ -12,7 +12,7 @@ metadata:
 rules:
   - apiGroups: ["", "apps", "networking.k8s.io"] # "" indicates the core API group
     resources: ["services", "deployments", "configmaps", "pods", "networkpolicies"]
-    verbs: ["create", "delete", "read", "list"]
+    verbs: ["create", "patch", "read", "get", "list", "delete", "deletecollection"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
