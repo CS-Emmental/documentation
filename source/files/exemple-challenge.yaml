@@ -1,0 +1,13 @@
+# Warning : container names (keys) can only contain [a-z0-9A-Z], dashes and unserscores
+containers:
+  database:  # Container name, will be used as DNS name inside the challenge
+    image: mongodb/latest
+  web_server:
+    image: nginx
+    can_access:  # Ports from other containers who are accessible to this one
+      - container: database
+        ports:  # If omitted or empty, all ports are open
+          - 27017
+exposed:
+  container: web_server
+  port: 80
