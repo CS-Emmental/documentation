@@ -10,7 +10,9 @@ You must have a Kubernetes cluster, which must have:
 * a namespace called *emmental-platform* (if you want to rename it, you must adapt all manifests)
 * a namespace called *emmental-challenges* (cannot be changed for now)
 * an Ingress controller enabled. For exemple, with Minikube, use ``minikube addons enable ingress``
-* a networking plugin supporting Network Policies, like `Calico <https://www.projectcalico.org/>`_.
+* a networking plugin supporting Network Policies, like `Calico <https://www.projectcalico.org/>`_ (if
+using Minikube, it may be necessary to use ``--network-plugin=cni --extra-config=kubeadm.pod-network-cidr=${POD_CIDR} \``
+with ``minikube start``, see `this issue <https://github.com/kubernetes/minikube/issues/6673>`_).
 
 Downloadable manifests
 ^^^^^^^^^^^^^^^^^^^^^^

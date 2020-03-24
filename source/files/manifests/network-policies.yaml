@@ -1,15 +1,90 @@
-apiVersion: projectcalico.org/v3
+---
+# Default deny for all pods in the emmental-platform namespace
+apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: allow-tcp-6379
+  name: default-deny-platform
   namespace: emmental-platform
 spec:
-  selector: color == 'red'
+  podSelector: {}
+  policyTypes:
+    - Ingress
+---
+# Allow anybody to access the front
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-front
+  namespace: emmental-platform
+spec:
+  podSelector:
+    matchLabels:
+      app: emmental
+      tier: frontend
   ingress:
-  - action: Allow
-    protocol: TCP
-    source:
-      selector: color == 'blue'
-    destination:
+    - ports:
+        - port: 80
+          protocol: TCP
+        - port: 80
+          protocol: UDP
+  policyTypes:
+  - Ingress
+---
+# Allow the front to access the back
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-front-back
+  namespace: emmental-platform
+spec:
+  podSelector:
+    matchLabels:
+      app: back
+      tier: backend
+  ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            app: emmental
+            tier: frontend
       ports:
-        - 6379
+        - port: 5000
+          protocol: TCP
+        - port: 5000
+          protocol: UDP
+  policyTypes:
+  - Ingress
+---
+# Allow the back to access the database
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-back-db
+  namespace: emmental-platform
+spec:
+  podSelector:
+    matchLabels:
+      app: mongo
+      tier: backend
+  ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            app: back
+            tier: backend
+      ports:
+        - port: 27017
+          protocol: TCP
+        - port: 27017
+          protocol: UDP
+---
+# Default deny for all pods in the emmental-challenges namespace
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-challenges
+  namespace: emmental-challenges
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress

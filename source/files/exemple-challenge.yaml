@@ -1,4 +1,4 @@
-# Warning : container names (keys) can only contain [a-z0-9A-Z], dashes and unserscores
+# Warning : container names (keys) can only contain [a-z0-9A-Z], and dashes
 containers:
   database:  # Container name, will be used as DNS name inside the challenge
     image: mongodb/latest
