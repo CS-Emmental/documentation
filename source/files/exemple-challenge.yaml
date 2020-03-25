@@ -4,6 +4,8 @@ containers:
     image: mongodb/latest
   web_server:
     image: nginx
+    env:  # Environment variables defined in the container
+      HOSTNAME: www.ce-emmental.fr
     ports:  # Ports exposed inside the challenge
       - 80
     can_access:  # Ports from other containers who are accessible to this one
