@@ -4,10 +4,12 @@ containers:
     image: mongodb/latest
   web_server:
     image: nginx
+    ports:  # Ports exposed inside the challenge
+      - 80
     can_access:  # Ports from other containers who are accessible to this one
       - container: database
         ports:  # If omitted or empty, all ports are open
           - 27017
-exposed:
+exposed:  # One port will be exposed to the outside
   container: web_server
   port: 80

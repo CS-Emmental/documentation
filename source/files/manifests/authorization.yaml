@@ -10,7 +10,7 @@ apiVersion: rbac.authorization.k8s.io/v1beta1
 metadata:
   name: challenge-instance-controller
 rules:
-  - apiGroups: ["", "apps", "networking.k8s.io"] # "" indicates the core API group
+  - apiGroups: ["", "apps", "networking.k8s.io", "extensions"] # "" indicates the core API group
     resources: ["services", "deployments", "configmaps", "pods", "networkpolicies"]
     verbs: ["create", "patch", "read", "get", "list", "delete", "deletecollection"]
 ---

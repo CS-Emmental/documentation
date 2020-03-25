@@ -23,10 +23,10 @@ spec:
       tier: frontend
   ingress:
     - ports:
-        - port: 80
-          protocol: TCP
-        - port: 80
-          protocol: UDP
+      - port: 80
+        protocol: TCP
+      - port: 80
+        protocol: UDP
   policyTypes:
   - Ingress
 ---
